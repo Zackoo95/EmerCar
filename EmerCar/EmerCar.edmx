@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_A33B8A_emercarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accident">
+          <Key>
+            <PropertyRef Name="Accident_id" />
+          </Key>
+          <Property Name="Accident_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Report" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descrip" Type="varchar(max)" Nullable="false" />
+          <Property Name="Location_Lat" Type="real" Nullable="false" />
+          <Property Name="Location_Long" Type="real" Nullable="false" />
+          <Property Name="Accident_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Car_Model">
+          <Key>
+            <PropertyRef Name="Car_ModelId" />
+          </Key>
+          <Property Name="Car_Model" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Car_ModelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Car_TypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Car_Type">
+          <Key>
+            <PropertyRef Name="Car_TypeId" />
+          </Key>
+          <Property Name="Car_TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Car_Type" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mechanical">
+          <Key>
+            <PropertyRef Name="Mechanical_ID" />
+          </Key>
+          <Property Name="Mechanical_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mechanical_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone_Number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location_Lat" Type="real" Nullable="false" />
+          <Property Name="Location_Long" Type="real" Nullable="false" />
+          <Property Name="Specified_In" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Numbers">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Number1" Type="bigint" Nullable="false" />
+          <Property Name="Number2" Type="bigint" />
+          <Property Name="Number3" Type="bigint" />
+          <Property Name="Number4" Type="bigint" />
+          <Property Name="Number5" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Park">
+          <Key>
+            <PropertyRef Name="Park" />
+          </Key>
+          <Property Name="Park" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Park_Date" Type="datetime" Nullable="false" />
+          <Property Name="Location_Lat" Type="real" Nullable="false" />
+          <Property Name="Location_Long" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserActivation">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Car_ID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Number" Type="bigint" Nullable="false" />
+          <Property Name="Car_ModelId" Type="int" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+          <Property Name="FireBaseToken" Type="varchar" MaxLength="100" />
+          <Property Name="ProfilePicture" Type="image" />
+          <Property Name="Code" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Number_CarType1">
+          <End Role="Car_Type" Type="Self.Car_Type" Multiplicity="0..1" />
+          <End Role="Car_Model" Type="Self.Car_Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_Type">
+              <PropertyRef Name="Car_TypeId" />
+            </Principal>
+            <Dependent Role="Car_Model">
+              <PropertyRef Name="Car_TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_CarType2">
+          <End Role="Car_Type" Type="Self.Car_Type" Multiplicity="1" />
+          <End Role="Mechanical" Type="Self.Mechanical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_Type">
+              <PropertyRef Name="Car_TypeId" />
+            </Principal>
+            <Dependent Role="Mechanical">
+              <PropertyRef Name="Specified_In" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_CarType22">
+          <End Role="Car_Model" Type="Self.Car_Model" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_Model">
+              <PropertyRef Name="Car_ModelId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Car_ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Reporter">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Accident">
+              <PropertyRef Name="Report" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Numbers" Type="Self.Numbers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Numbers">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Users3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Park" Type="Self.Park" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Park">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Users4">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Accident">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Usersq">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserActivation" Type="Self.UserActivation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserActivation">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_A33B8A_emercarModelStoreContainer">
+          <EntitySet Name="Accident" EntityType="Self.Accident" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car_Model" EntityType="Self.Car_Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car_Type" EntityType="Self.Car_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mechanical" EntityType="Self.Mechanical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Numbers" EntityType="Self.Numbers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Park" EntityType="Self.Park" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserActivation" EntityType="Self.UserActivation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Number_CarType1" Association="Self.fk_Number_CarType1">
+            <End Role="Car_Type" EntitySet="Car_Type" />
+            <End Role="Car_Model" EntitySet="Car_Model" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_CarType2" Association="Self.fk_Number_CarType2">
+            <End Role="Car_Type" EntitySet="Car_Type" />
+            <End Role="Mechanical" EntitySet="Mechanical" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_CarType22" Association="Self.fk_Number_CarType22">
+            <End Role="Car_Model" EntitySet="Car_Model" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Reporter" Association="Self.fk_Number_Reporter">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Accident" EntitySet="Accident" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Users" Association="Self.fk_Number_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Numbers" EntitySet="Numbers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Users3" Association="Self.fk_Number_Users3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Park" EntitySet="Park" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Users4" Association="Self.fk_Number_Users4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Accident" EntitySet="Accident" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Usersq" Association="Self.fk_Number_Usersq">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActivation" EntitySet="UserActivation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_A33B8A_emercarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accident">
+          <Key>
+            <PropertyRef Name="Accident_id" />
+          </Key>
+          <Property Name="Accident_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Report" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descrip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location_Lat" Type="Single" Nullable="false" />
+          <Property Name="Location_Long" Type="Single" Nullable="false" />
+          <Property Name="Accident_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Number_Reporter" FromRole="Accident" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.fk_Number_Users4" FromRole="Accident" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Car_Model">
+          <Key>
+            <PropertyRef Name="Car_ModelId" />
+          </Key>
+          <Property Name="Car_Model1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Car_ModelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Car_TypeId" Type="Int32" />
+          <NavigationProperty Name="Car_Type" Relationship="Self.fk_Number_CarType1" FromRole="Car_Model" ToRole="Car_Type" />
+          <NavigationProperty Name="Users" Relationship="Self.fk_Number_CarType22" FromRole="Car_Model" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Car_Type">
+          <Key>
+            <PropertyRef Name="Car_TypeId" />
+          </Key>
+          <Property Name="Car_TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Car_Type1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Car_Model" Relationship="Self.fk_Number_CarType1" FromRole="Car_Type" ToRole="Car_Model" />
+          <NavigationProperty Name="Mechanicals" Relationship="Self.fk_Number_CarType2" FromRole="Car_Type" ToRole="Mechanical" />
+        </EntityType>
+        <EntityType Name="Mechanical">
+          <Key>
+            <PropertyRef Name="Mechanical_ID" />
+          </Key>
+          <Property Name="Mechanical_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mechanical_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location_Lat" Type="Single" Nullable="false" />
+          <Property Name="Location_Long" Type="Single" Nullable="false" />
+          <Property Name="Specified_In" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Car_Type" Relationship="Self.fk_Number_CarType2" FromRole="Mechanical" ToRole="Car_Type" />
+        </EntityType>
+        <EntityType Name="Number">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Number1" Type="Int64" Nullable="false" />
+          <Property Name="Number2" Type="Int64" />
+          <Property Name="Number3" Type="Int64" />
+          <Property Name="Number4" Type="Int64" />
+          <Property Name="Number5" Type="Int64" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Number_Users" FromRole="Numbers" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Park">
+          <Key>
+            <PropertyRef Name="Park1" />
+          </Key>
+          <Property Name="Park1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Park_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Location_Lat" Type="Single" Nullable="false" />
+          <Property Name="Location_Long" Type="Single" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Number_Users3" FromRole="Park" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UserActivation">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="ActivationCode" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Number_Usersq" FromRole="UserActivation" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Car_ID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Number" Type="Int64" Nullable="false" />
+          <Property Name="Car_ModelId" Type="Int32" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="FireBaseToken" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Accidents" Relationship="Self.fk_Number_Reporter" FromRole="Users" ToRole="Accident" />
+          <NavigationProperty Name="Accidents1" Relationship="Self.fk_Number_Users4" FromRole="Users" ToRole="Accident" />
+          <NavigationProperty Name="Car_Model" Relationship="Self.fk_Number_CarType22" FromRole="Users" ToRole="Car_Model" />
+          <NavigationProperty Name="Number" Relationship="Self.fk_Number_Users" FromRole="Users" ToRole="Numbers" />
+          <NavigationProperty Name="Parks" Relationship="Self.fk_Number_Users3" FromRole="Users" ToRole="Park" />
+          <NavigationProperty Name="UserActivation" Relationship="Self.fk_Number_Usersq" FromRole="Users" ToRole="UserActivation" />
+        </EntityType>
+        <Association Name="fk_Number_Reporter">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Accident">
+              <PropertyRef Name="Report" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Users4">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Accident" Type="Self.Accident" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Accident">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_CarType1">
+          <End Role="Car_Type" Type="Self.Car_Type" Multiplicity="0..1" />
+          <End Role="Car_Model" Type="Self.Car_Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_Type">
+              <PropertyRef Name="Car_TypeId" />
+            </Principal>
+            <Dependent Role="Car_Model">
+              <PropertyRef Name="Car_TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_CarType22">
+          <End Role="Car_Model" Type="Self.Car_Model" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_Model">
+              <PropertyRef Name="Car_ModelId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Car_ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_CarType2">
+          <End Role="Car_Type" Type="Self.Car_Type" Multiplicity="1" />
+          <End Role="Mechanical" Type="Self.Mechanical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car_Type">
+              <PropertyRef Name="Car_TypeId" />
+            </Principal>
+            <Dependent Role="Mechanical">
+              <PropertyRef Name="Specified_In" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Numbers" Type="Self.Number" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Numbers">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Users3">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Park" Type="Self.Park" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Park">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Number_Usersq">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserActivation" Type="Self.UserActivation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserActivation">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_A33B8A_emercarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accidents" EntityType="Self.Accident" />
+          <EntitySet Name="Car_Model" EntityType="Self.Car_Model" />
+          <EntitySet Name="Car_Type" EntityType="Self.Car_Type" />
+          <EntitySet Name="Mechanicals" EntityType="Self.Mechanical" />
+          <EntitySet Name="Numbers" EntityType="Self.Number" />
+          <EntitySet Name="Parks" EntityType="Self.Park" />
+          <EntitySet Name="UserActivations" EntityType="Self.UserActivation" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="fk_Number_Reporter" Association="Self.fk_Number_Reporter">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Accident" EntitySet="Accidents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Users4" Association="Self.fk_Number_Users4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Accident" EntitySet="Accidents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_CarType1" Association="Self.fk_Number_CarType1">
+            <End Role="Car_Type" EntitySet="Car_Type" />
+            <End Role="Car_Model" EntitySet="Car_Model" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_CarType22" Association="Self.fk_Number_CarType22">
+            <End Role="Car_Model" EntitySet="Car_Model" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_CarType2" Association="Self.fk_Number_CarType2">
+            <End Role="Car_Type" EntitySet="Car_Type" />
+            <End Role="Mechanical" EntitySet="Mechanicals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Users" Association="Self.fk_Number_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Numbers" EntitySet="Numbers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Users3" Association="Self.fk_Number_Users3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Park" EntitySet="Parks" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Number_Usersq" Association="Self.fk_Number_Usersq">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActivation" EntitySet="UserActivations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_A33B8A_emercarModelStoreContainer" CdmEntityContainer="DB_A33B8A_emercarEntities">
+          <EntitySetMapping Name="Accidents">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.Accident">
+              <MappingFragment StoreEntitySet="Accident">
+                <ScalarProperty Name="Accident_id" ColumnName="Accident_id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Descrip" ColumnName="Descrip" />
+                <ScalarProperty Name="Location_Lat" ColumnName="Location_Lat" />
+                <ScalarProperty Name="Location_Long" ColumnName="Location_Long" />
+                <ScalarProperty Name="Accident_Time" ColumnName="Accident_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car_Model">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.Car_Model">
+              <MappingFragment StoreEntitySet="Car_Model">
+                <ScalarProperty Name="Car_Model1" ColumnName="Car_Model" />
+                <ScalarProperty Name="Car_ModelId" ColumnName="Car_ModelId" />
+                <ScalarProperty Name="Car_TypeId" ColumnName="Car_TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car_Type">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.Car_Type">
+              <MappingFragment StoreEntitySet="Car_Type">
+                <ScalarProperty Name="Car_TypeId" ColumnName="Car_TypeId" />
+                <ScalarProperty Name="Car_Type1" ColumnName="Car_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mechanicals">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.Mechanical">
+              <MappingFragment StoreEntitySet="Mechanical">
+                <ScalarProperty Name="Mechanical_ID" ColumnName="Mechanical_ID" />
+                <ScalarProperty Name="Mechanical_Name" ColumnName="Mechanical_Name" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+                <ScalarProperty Name="Location_Lat" ColumnName="Location_Lat" />
+                <ScalarProperty Name="Location_Long" ColumnName="Location_Long" />
+                <ScalarProperty Name="Specified_In" ColumnName="Specified_In" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Numbers">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.Number">
+              <MappingFragment StoreEntitySet="Numbers">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Number1" ColumnName="Number1" />
+                <ScalarProperty Name="Number2" ColumnName="Number2" />
+                <ScalarProperty Name="Number3" ColumnName="Number3" />
+                <ScalarProperty Name="Number4" ColumnName="Number4" />
+                <ScalarProperty Name="Number5" ColumnName="Number5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parks">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.Park">
+              <MappingFragment StoreEntitySet="Park">
+                <ScalarProperty Name="Park1" ColumnName="Park" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Park_Date" ColumnName="Park_Date" />
+                <ScalarProperty Name="Location_Lat" ColumnName="Location_Lat" />
+                <ScalarProperty Name="Location_Long" ColumnName="Location_Long" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActivations">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.UserActivation">
+              <MappingFragment StoreEntitySet="UserActivation">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DB_A33B8A_emercarModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="User_Number" ColumnName="User_Number" />
+                <ScalarProperty Name="Car_ModelId" ColumnName="Car_ModelId" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="FireBaseToken" ColumnName="FireBaseToken" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

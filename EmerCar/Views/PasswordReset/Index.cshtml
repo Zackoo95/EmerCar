@@ -1,0 +1,19 @@
+﻿@model EmerCar.User
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Password Reset</h2>
+<form action="https://localhost:44361/PasswordReset/Reset">
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, "Please Enter Your Email")
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sumbit</button>
+
+
+</form>

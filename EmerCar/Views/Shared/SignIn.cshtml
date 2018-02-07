@@ -1,0 +1,36 @@
+﻿@model EmerCar.User
+
+<div style="height: 422px; margin-left: 941px; width: 304px;">
+    <p>SignIn</p>
+    @using (Html.BeginForm("Enter", "Login"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Pass)
+            @Html.TextBoxFor(m => m.Pass, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary">SignIn</button>
+
+    }
+    <br />
+    @using (Html.BeginForm("Index", "PasswordReset"))
+    {
+        @Html.ActionLink("Forgot Password?!", "Index", "PasswordReset")
+    }
+    <br />
+    @using (Html.BeginForm("Index", "Registration"))
+    {
+        <p>If you don't have account</p>
+        <button type="submit" class="btn btn-primary">SignUp</button>
+    }
+</div>
+
+
+
+
+
+
+

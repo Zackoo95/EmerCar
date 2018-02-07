@@ -1,0 +1,73 @@
+﻿@model EmerCar.Models.UserViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registeration</h2>
+<form action="http://emercar-001-site2.atempurl.com/Registration/Rege">
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.user.UserName)
+        @Html.TextBoxFor(m => m.user.UserName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.user.Email)
+        @Html.TextBoxFor(m => m.user.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.user.Pass)
+       @Html.PasswordFor(m => m.user.Pass, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.user.Car_ID)
+        @Html.TextBoxFor(m => m.user.Car_ID, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.user.User_Number)
+        @Html.TextBoxFor(m => m.user.User_Number, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.user.Car_ModelId)
+        @Html.DropDownListFor(m => m.user.Car_ModelId, new SelectList(Model.CarModel, "Car_ModelId", "Car_Model1"), " Please Select Car Model", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.number.Number1)
+        @Html.TextBoxFor(m => m.number.Number1, " Required", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.number.Number2)
+        @Html.TextBoxFor(m => m.number.Number2, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.number.Number3)
+        @Html.TextBoxFor(m => m.number.Number3, "Optional", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.number.Number4)
+        @Html.TextBoxFor(m => m.number.Number4, "Optional", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.number.Number5)
+        @Html.TextBoxFor(m => m.number.Number5, "Optional", new { @class = "form-control" })
+    </div>
+
+   @Html.LabelFor(m => m.user.ProfilePicture, new { @class = "form-control" })
+<div class="col-md-10">
+
+    <input type="file" name="ProfilePicture" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+
+</div>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">SignUp</button>
+
+
+</form>
+

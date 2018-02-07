@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eb09409a5aa249398b3e24b133d23686" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.Accident" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.Car_Model" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.Car_Type" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.Mechanical" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.Number" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.Park" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.UserActivation" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.User" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Reporter" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Users4" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_CarType1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_CarType22" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_CarType2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Users3" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Usersq" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
