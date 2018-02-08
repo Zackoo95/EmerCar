@@ -33,5 +33,6 @@ namespace EmerCar
         public virtual DbSet<Park> Parks { get; set; }
         public virtual DbSet<UserActivation> UserActivations { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<PasswordReset> PasswordResets { get; set; }
     }
 }

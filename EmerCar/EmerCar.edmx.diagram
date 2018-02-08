@@ -21,6 +21,8 @@
         <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Users3" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Usersq" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A33B8A_emercarModel.PasswordReset" Width="1.5" PointX="7.5" PointY="14.625" />
+        <AssociationConnector Association="DB_A33B8A_emercarModel.fk_Number_Users123" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -7,6 +7,7 @@ namespace EmerCar.Models
 {
     public class UserViewModel
     {
+        
         public IEnumerable<Car_Model> CarModel { get; set; }
         public User user { get; set; }
         public Number number { get; set; }

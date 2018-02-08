@@ -1,0 +1,21 @@
+﻿@model EmerCar.Models.ResetPassword
+@{
+    ViewBag.Title = "Reset";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reset</h2>
+<br />
+<br />
+<form action="http://emercar-001-site2.atempurl.com/PasswordReset/Page/{0}, activationCode">
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.oldpass, "Old Password")
+        @Html.TextBoxFor(m => m.oldpass, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.newpass, "NewPassword")
+        @Html.TextBoxFor(m => m.newpass, new { @class = "form-control" })
+    </div>
+   </form>
+

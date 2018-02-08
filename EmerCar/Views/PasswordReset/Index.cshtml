@@ -5,7 +5,8 @@
 }
 
 <h2>Password Reset</h2>
-<form action="https://localhost:44361/PasswordReset/Reset">
+@using (Html.BeginForm("ResetPass", "PasswordReset"))
+  { 
     <br />
     <br />
     <div class="form-group">
@@ -16,4 +17,4 @@
     <button type="submit" class="btn btn-primary">Sumbit</button>
 
 
-</form>
+}

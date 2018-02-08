@@ -43,5 +43,6 @@ namespace EmerCar
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Park> Parks { get; set; }
         public virtual UserActivation UserActivation { get; set; }
+        public virtual PasswordReset PasswordReset { get; set; }
     }
 }
