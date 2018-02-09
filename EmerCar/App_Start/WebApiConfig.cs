@@ -15,7 +15,13 @@ namespace EmerCar
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Newtonsoft.Json.Formatting.Indented;
             config.MapHttpAttributeRoutes();
-            
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            var json = config.Formatters.JsonFormatter;
+
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
