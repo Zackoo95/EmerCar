@@ -4,6 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
+using EmerCar.Models;
+using System.Collections;
 
 namespace EmerCar.Controllers.API
 {
@@ -16,11 +20,10 @@ namespace EmerCar.Controllers.API
         }
 
         //GET /api/cars
-        [HttpGet]
-        public IHttpActionResult CarType()
+        //[HttpGet]
+        public IEnumerable<Car_Type> GetCarType()
         {
-            var list = _context.Car_Type;
-            return Json(list); 
+            return _context.Car_Type.ToList();
         }
     }
 }

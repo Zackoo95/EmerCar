@@ -248,6 +248,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmerCar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Car_type.cs" />
     <Compile Include="Models\Hash.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Login.cs" />
