@@ -24,40 +24,39 @@ namespace EmerCar.Controllers
         public ActionResult Index()
         {
             var Carmodel = _context.Car_Model.ToList();
-            var viewmodel = new UserViewModel
-            {
-                CarModel = Carmodel
-            };
+            var viewmodel = new RegModel();
+            
             return View(viewmodel);
         }
 
         //Regestration
         //Post /Registration//Rege
-        public string Rege([Bind(Exclude = "ProfilePicture")]UserViewModel model)
+        [System.Web.Http.HttpPost]
+        public RegModel Rege(RegModel model)
         {
-            if (model.user.UserName == null)
+            if (model.name == null)
             {
                 throw new HttpException(400, "UserName can't be empty");
             }
-            else if (model.user.Email == null)
+            else if (model.email == null)
             {
                 throw new HttpException(400,"Email can't be empty");
             }
-            else if (model.user.Pass == null)
+            else if (model.password == null)
             {
                 throw new HttpException(400,"Password can't be empty");
 
             }
-            else if (model.user.User_Number == 0)
+            else if (model.mobile_no == null)
             {
                 throw new HttpException(400,"Number can't be empty");
 
             }
-            else if (model.number.Number1 == 0)
+            else if (model.emergency_no1 == null)
             {
                 throw new HttpException(400,"Emergancy Number can't be empty");
             }
-            else if (model.user.Car_ID == null)
+            else if (model.car_no == null)
             {
                 throw new HttpException(400,"CarPlate can't be empty");
             }
@@ -72,14 +71,14 @@ namespace EmerCar.Controllers
                     imageData = binary.ReadBytes(poImgFile.ContentLength);
                 }
             }
+
                 var keyNew = Hash.GeneratePassword(10);
-            model.user.Code = keyNew;
-            var password = Hash.EncodePassword(model.user.Pass, keyNew);
-            model.user.Pass = password;
-            model.user.ProfilePicture = imageData;
-            User user = model.user;
-            Number number = model.number;
-            number.User_ID = user.UserID;
+            model.Code = keyNew;
+            var password = Hash.EncodePassword(model.password, keyNew);
+            model.password = password;
+            //model.profile_photo = imageData;
+            User user = new User();
+            Number number = new Number();
             string message = string.Empty;
             string email = _context.Database.SqlQuery<string>("Select Email from dbo.Users where Email=@mail", new SqlParameter("@mail", user.Email)).ToString();
             string plate = _context.Database.SqlQuery<string>("Select Car_ID from dbo.Users where Car_ID=@Car", new SqlParameter("@car", user.Car_ID)).ToString();
@@ -94,13 +93,29 @@ namespace EmerCar.Controllers
             else
             {
                 message = "Registration successful.\\nUser Id: " + user.UserID.ToString();
+                user.UserName = model.name;
+                user.Email = model.email;
+                user.Pass = model.password;
+                user.Car_ID = model.car_no;
+                user.Car_ModelId = model.car_model_id;
+                user.User_Number = model.mobile_no;
+                user.Code = model.Code;
                 _context.Users.Add(user);
+                _context.SaveChanges();
+                var UserInDb = _context.Users.SingleOrDefault(c => c.Email == model.email);
+                number.User_ID = UserInDb.UserID;
+                number.Number1 = model.emergency_no1;
+                number.Number2 = model.emergency_no2;
+                number.Number3 = model.emergency_no3;
+                number.Number4 = model.emergency_no4;
+                number.Number5 = model.emergency_no5;
+                
                 _context.Numbers.Add(number);
                 _context.SaveChanges();
+                message = "Registration successful.\\nUser Id: " + user.UserID.ToString();
                 SendActivationEmail(user);
-                return message;
-
-
+                model.password = "";
+                return model;
             }
         }
 

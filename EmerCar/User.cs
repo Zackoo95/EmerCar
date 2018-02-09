@@ -27,7 +27,7 @@ namespace EmerCar
         public string Pass { get; set; }
         public string Car_ID { get; set; }
         public int UserID { get; set; }
-        public long User_Number { get; set; }
+        public string User_Number { get; set; }
         public Nullable<int> Car_ModelId { get; set; }
         public bool IsVerified { get; set; }
         public string FireBaseToken { get; set; }

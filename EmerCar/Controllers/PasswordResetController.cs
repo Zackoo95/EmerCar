@@ -20,22 +20,10 @@ namespace EmerCar.Controllers
 
             return View();
         }
-        public string ResetPass(User model)
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new HttpException(400, "Incorrect input");
-            }
-            if (model.Email == null)
-            {
-                throw new HttpException(400, "Email can't be empty");
-            }
-            string message = "Please Check your mail";
-            DB_A33B8A_emercarEntities _context = new DB_A33B8A_emercarEntities();
-            User user = _context.Users.SingleOrDefault(m => m.Email == model.Email);
-            SendActivationEmail(user);
-            return message;
-        }
+
+
+
+
         public ActionResult Reset()
         {
             DB_A33B8A_emercarEntities _context = new DB_A33B8A_emercarEntities();
@@ -85,15 +73,21 @@ namespace EmerCar.Controllers
                 smtp.Send(mm);
             }
         }
+
+
         public ActionResult Page()
         {
             return View();
         }
+
+
         public string Confirm(ResetPassword forget)
         {
+
             DB_A33B8A_emercarEntities _context = new DB_A33B8A_emercarEntities();
             User user = _context.Users.Where(p => p.Email == forget.mail ).FirstOrDefault();
             PasswordReset userActivation = _context.PasswordResets.Where(p => p.ID == user.UserID).SingleOrDefault();
+
             var oldone = forget.oldpass;
             var newone = forget.newpass;
            oldone = Hash.EncodePassword(oldone, user.Code);
@@ -110,5 +104,7 @@ namespace EmerCar.Controllers
             else
             throw new HttpException(400, "Incorrect Password");
         }
+
+
     }
 }

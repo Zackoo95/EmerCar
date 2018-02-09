@@ -209,11 +209,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIController.cs" />
+    <Compile Include="Controllers\API\CarModelsController.cs" />
+    <Compile Include="Controllers\API\CarsController.cs" />
+    <Compile Include="Controllers\API\ResetController.cs" />
     <Compile Include="Controllers\ControllerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PasswordResetController.cs" />
+    <Compile Include="Controllers\RegController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -249,7 +253,10 @@
     <Compile Include="Mechanical.cs">
       <DependentUpon>EmerCar.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegModel.cs" />
+    <Compile Include="Models\ResetMail.cs" />
     <Compile Include="Models\ResetPassword.cs" />
+    <Compile Include="Models\SendActivation.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Number.cs">
       <DependentUpon>EmerCar.tt</DependentUpon>

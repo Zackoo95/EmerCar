@@ -15,11 +15,11 @@ namespace EmerCar
     public partial class Number
     {
         public int User_ID { get; set; }
-        public long Number1 { get; set; }
-        public Nullable<long> Number2 { get; set; }
-        public Nullable<long> Number3 { get; set; }
-        public Nullable<long> Number4 { get; set; }
-        public Nullable<long> Number5 { get; set; }
+        public string Number1 { get; set; }
+        public string Number2 { get; set; }
+        public string Number3 { get; set; }
+        public string Number4 { get; set; }
+        public string Number5 { get; set; }
     
         public virtual User User { get; set; }
     }

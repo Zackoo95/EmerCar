@@ -49,11 +49,11 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="int" Nullable="false" />
-          <Property Name="Number1" Type="bigint" Nullable="false" />
-          <Property Name="Number2" Type="bigint" />
-          <Property Name="Number3" Type="bigint" />
-          <Property Name="Number4" Type="bigint" />
-          <Property Name="Number5" Type="bigint" />
+          <Property Name="Number1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Number2" Type="varchar" MaxLength="50" />
+          <Property Name="Number3" Type="varchar" MaxLength="50" />
+          <Property Name="Number4" Type="varchar" MaxLength="50" />
+          <Property Name="Number5" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Park">
           <Key>
@@ -88,7 +88,7 @@
           <Property Name="Pass" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Car_ID" Type="varchar" MaxLength="7" Nullable="false" />
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_Number" Type="bigint" Nullable="false" />
+          <Property Name="User_Number" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Car_ModelId" Type="int" />
           <Property Name="IsVerified" Type="bit" Nullable="false" />
           <Property Name="FireBaseToken" Type="varchar" MaxLength="100" />
@@ -305,11 +305,11 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="Int32" Nullable="false" />
-          <Property Name="Number1" Type="Int64" Nullable="false" />
-          <Property Name="Number2" Type="Int64" />
-          <Property Name="Number3" Type="Int64" />
-          <Property Name="Number4" Type="Int64" />
-          <Property Name="Number5" Type="Int64" />
+          <Property Name="Number1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Number2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Number3" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Number4" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Number5" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="Self.fk_Number_Users" FromRole="Numbers" ToRole="Users" />
         </EntityType>
         <EntityType Name="Park">
@@ -340,7 +340,7 @@
           <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Car_ID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_Number" Type="Int64" Nullable="false" />
+          <Property Name="User_Number" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Car_ModelId" Type="Int32" />
           <Property Name="IsVerified" Type="Boolean" Nullable="false" />
           <Property Name="FireBaseToken" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />

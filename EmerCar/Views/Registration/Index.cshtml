@@ -1,4 +1,4 @@
-﻿@model EmerCar.Models.UserViewModel
+﻿@model EmerCar.Models.RegModel
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,61 +7,61 @@
 <h2>Registeration</h2>
 <br />
 <br />
-@using (Html.BeginForm("Rege", "Registration", FormMethod.Post))
+@using (Html.BeginForm("Rege", "Reg", FormMethod.Post))
 {
 
     <div class="form-group">
-        @Html.LabelFor(m => m.user.UserName)
-        @Html.TextBoxFor(m => m.user.UserName, new { @class = "form-control" })
+        @Html.LabelFor(m =>m.name)
+        @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.user.Email)
-        @Html.TextBoxFor(m => m.user.Email, new { @class = "form-control" })
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.user.Pass)
-       @Html.PasswordFor(m => m.user.Pass, new { @class = "form-control" })
+        @Html.LabelFor(m => m.password)
+       @Html.PasswordFor(m => m.password, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.user.Car_ID)
-        @Html.TextBoxFor(m => m.user.Car_ID, new { @class = "form-control" })
+        @Html.LabelFor(m => m.car_no)
+        @Html.TextBoxFor(m => m.car_no, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.user.User_Number)
-        @Html.TextBoxFor(m => m.user.User_Number, new { @class = "form-control" })
+        @Html.LabelFor(m => m.mobile_no)
+        @Html.TextBoxFor(m => m.mobile_no, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.user.Car_ModelId)
-        @Html.DropDownListFor(m => m.user.Car_ModelId, new SelectList(Model.CarModel, "Car_ModelId", "Car_Model1"), " Please Select Car Model", new { @class = "form-control" })
+        @Html.LabelFor(m => m.car_model_id)
+       @Html.TextBoxFor(m => m.car_model_id, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.number.Number1)
-        @Html.TextBoxFor(m => m.number.Number1, " Required", new { @class = "form-control" })
+        @Html.LabelFor(m => m.emergency_no1)
+        @Html.TextBoxFor(m => m.emergency_no1 ," Required", new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.number.Number2)
-        @Html.TextBoxFor(m => m.number.Number2, new { @class = "form-control" })
+        @Html.LabelFor(m => m.emergency_no2)
+        @Html.TextBoxFor(m => m.emergency_no2, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.number.Number3)
-        @Html.TextBoxFor(m => m.number.Number3, "Optional", new { @class = "form-control" })
+        @Html.LabelFor(m => m.emergency_no3)
+        @Html.TextBoxFor(m => m.emergency_no3, "Optional", new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.number.Number4)
-        @Html.TextBoxFor(m => m.number.Number4, "Optional", new { @class = "form-control" })
+        @Html.LabelFor(m => m.emergency_no4)
+        @Html.TextBoxFor(m => m.emergency_no4, "Optional", new { @class = "form-control" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.number.Number5)
-        @Html.TextBoxFor(m => m.number.Number5, "Optional", new { @class = "form-control" })
+        @Html.LabelFor(m => m.emergency_no5)
+        @Html.TextBoxFor(m => m.emergency_no5, "Optional", new { @class = "form-control" })
     </div>
 
-   @Html.LabelFor(m => m.user.ProfilePicture)
+   @Html.LabelFor(m => m.profile_photo)
 <div class="col-md-10">
 
     <input type="file" name="ProfilePicture" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
