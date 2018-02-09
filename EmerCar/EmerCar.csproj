@@ -211,6 +211,7 @@
     <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\API\CarModelsController.cs" />
     <Compile Include="Controllers\API\CarsController.cs" />
+    <Compile Include="Controllers\API\LoginController.cs" />
     <Compile Include="Controllers\API\ResetController.cs" />
     <Compile Include="Controllers\ControllerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -249,6 +250,8 @@
     </Compile>
     <Compile Include="Models\Hash.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Mechanical.cs">
       <DependentUpon>EmerCar.tt</DependentUpon>

@@ -17,6 +17,7 @@ namespace EmerCar.Models
         {
             Guid activationCode = Guid.NewGuid();
             DB_A33B8A_emercarEntities usersEntities = new DB_A33B8A_emercarEntities();
+            
             usersEntities.UserActivations.Add(new UserActivation
             {
                 User_ID = user.UserID,
@@ -49,6 +50,13 @@ namespace EmerCar.Models
         {
             Guid activationCode = Guid.NewGuid();
             DB_A33B8A_emercarEntities usersEntities = new DB_A33B8A_emercarEntities();
+            PasswordReset userindb = new PasswordReset();
+            userindb = usersEntities.PasswordResets.SingleOrDefault(c => c.ID == user.UserID);
+            if (userindb.ID != 0)
+            {
+                usersEntities.PasswordResets.Remove(userindb);
+                usersEntities.SaveChanges();
+            }
             usersEntities.PasswordResets.Add(new PasswordReset
             {
                 ID = user.UserID,

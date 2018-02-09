@@ -1,16 +1,16 @@
-﻿@model EmerCar.User
+﻿@model EmerCar.Models.Login
 
 <div style="height: 422px; margin-left: 941px; width: 304px;">
     <p>SignIn</p>
-    @using (Html.BeginForm("Enter", "Login"))
+    @using (Html.BeginForm("Login", "Login"))
     {
         <div class="form-group">
-            @Html.LabelFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.LabelFor(m => m.email)
+            @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Pass)
-            @Html.TextBoxFor(m => m.Pass, new { @class = "form-control" })
+            @Html.LabelFor(m => m.password)
+            @Html.TextBoxFor(m => m.password, new { @class = "form-control" })
         </div>
         <button type="submit" class="btn btn-primary">SignIn</button>
 

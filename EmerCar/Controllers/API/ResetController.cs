@@ -27,11 +27,11 @@ namespace EmerCar.Controllers.API
             {
                 throw new HttpException(400, "Email can't be empty");
             }
-            string message = "Please Check your mail";
+            //string message = "Please Check your mail";
             DB_A33B8A_emercarEntities _context = new DB_A33B8A_emercarEntities();
             User user = _context.Users.SingleOrDefault(m => m.Email == email);
             EmerCar.Models.SendActivation.SendResetEmail(user);
-            return message;
+            throw new HttpResponseException(HttpStatusCode.OK);
         }
     }
 }
