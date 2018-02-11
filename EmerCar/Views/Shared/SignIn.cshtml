@@ -2,8 +2,9 @@
 
 <div style="height: 422px; margin-left: 941px; width: 304px;">
     <p>SignIn</p>
-    @using (Html.BeginForm("Login", "Login"))
-    {
+   <br />
+    <form action="http://emercar-001-site2.atempurl.com/api/Login">
+
         <div class="form-group">
             @Html.LabelFor(m => m.email)
             @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
@@ -13,10 +14,10 @@
             @Html.TextBoxFor(m => m.password, new { @class = "form-control" })
         </div>
         <button type="submit" class="btn btn-primary">SignIn</button>
-
-    }
+    </form>
+    
     <br />
-    @using (Html.BeginForm("Index", "PasswordReset"))
+    @using (Html.BeginForm("ResetPass", "Reset"))
     {
         @Html.ActionLink("Forgot Password?!", "Index", "PasswordReset")
     }

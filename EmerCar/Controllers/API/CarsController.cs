@@ -21,9 +21,10 @@ namespace EmerCar.Controllers.API
 
         //GET /api/cars
         //[HttpGet]
-        public IEnumerable<Car_Type> GetCarType()
+        public IEnumerable<Cartype> GetCarType()
         {
-            return _context.Car_Type.ToList();
+            var types = _context.Database.SqlQuery<Cartype>("select Car_TypeId,Car_Type from dbo.Car_Type").ToList();
+            return types;
         }
     }
 }

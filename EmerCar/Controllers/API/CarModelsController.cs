@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using EmerCar.Models;
 
 namespace EmerCar.Controllers.API
 {
@@ -18,10 +19,10 @@ namespace EmerCar.Controllers.API
 
         //GET /api/carmodels
         [HttpGet]
-        public IEnumerable<Car_Model> CarModels (int id)
+        public IEnumerable<CarModel> CarModels (int id)
         {
-            
-            IEnumerable<Car_Model> carModel = _context.Car_Model.Where(c => c.Car_TypeId == id).ToList();
+            string sql = "select Car_ModelId,Car_Model from dbo.Car_Model where Car_TypeId = {0}";
+            IEnumerable<CarModel> carModel = _context.Database.SqlQuery<CarModel>(sql,id).ToList();
             return carModel;
 
         }

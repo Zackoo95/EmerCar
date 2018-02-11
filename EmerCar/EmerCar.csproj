@@ -215,10 +215,10 @@
     <Compile Include="Controllers\API\ResetController.cs" />
     <Compile Include="Controllers\ControllerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoggingIn.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PasswordResetController.cs" />
-    <Compile Include="Controllers\RegController.cs" />
+    <Compile Include="Controllers\API\RegController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -248,6 +248,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmerCar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\Cartype.cs" />
     <Compile Include="Models\Car_type.cs" />
     <Compile Include="Models\Hash.cs" />
     <Compile Include="Models\IdentityModels.cs" />

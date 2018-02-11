@@ -17,7 +17,7 @@ namespace EmerCar.Controllers.API
     public class ResetController : ApiController
     {
 
-        public string ResetPass(string email)
+        public string ResetPass([FromUri]string email)
         {
             if (!ModelState.IsValid)
             {
@@ -30,6 +30,10 @@ namespace EmerCar.Controllers.API
             //string message = "Please Check your mail";
             DB_A33B8A_emercarEntities _context = new DB_A33B8A_emercarEntities();
             User user = _context.Users.SingleOrDefault(m => m.Email == email);
+            if (user == null)
+            {
+                throw new HttpException(400, "There is no user with this email");
+            }
             EmerCar.Models.SendActivation.SendResetEmail(user);
             throw new HttpResponseException(HttpStatusCode.OK);
         }

@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace EmerCar.Controllers
 {
-    public class LoginController : Controller
+    public class LoggingIn : Controller
     {
         private DB_A33B8A_emercarEntities _context;
-        public LoginController()
+        public LoggingIn()
         {
             _context = new DB_A33B8A_emercarEntities();
         }

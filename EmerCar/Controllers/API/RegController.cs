@@ -16,7 +16,7 @@ namespace EmerCar.Controllers
         DB_A33B8A_emercarEntities _context = new DB_A33B8A_emercarEntities();
         //Post /Registration//Rege
         [System.Web.Http.HttpPost]
-        public RegModel Rege(RegModel model)
+        public RegModel Rege([FromBody]RegModel model)
         {
             if (model.name == null)
             {
@@ -44,9 +44,10 @@ namespace EmerCar.Controllers
             {
                 throw new HttpException(400, "CarPlate can't be empty");
             }
-            // To convert the user uploaded Photo as Byte Array before save to DB
-          
-
+            else if (model.car_model_id == 0)
+            {
+                throw new HttpException(400, "Please Enter your Car Model");
+            }
             var keyNew = Hash.GeneratePassword(10);
             model.Code = keyNew;
             var password = Hash.EncodePassword(model.password, keyNew);
@@ -84,7 +85,6 @@ namespace EmerCar.Controllers
                 number.Number3 = model.emergency_no3;
                 number.Number4 = model.emergency_no4;
                 number.Number5 = model.emergency_no5;
-
                 _context.Numbers.Add(number);
                 _context.SaveChanges();
                 message = "Registration successful.\\nUser Id: " + user.UserID.ToString();

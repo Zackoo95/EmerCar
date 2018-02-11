@@ -135,14 +135,10 @@ namespace EmerCar.Controllers
                 Number number = _context.Numbers.Find(userActivation.User_ID);
                 if (userActivation != null)
                 {
+                    string sql = "Update dbo.Users set IsVerified = 1 where UserID = {0}";
+                    _context.Database.ExecuteSqlCommand(sql,user.UserID);
                     usersEntities.UserActivations.Remove(userActivation);
-                    //usersEntities.Numbers.Remove(number);
-                    //usersEntities.Users.Remove(user);
                     usersEntities.SaveChanges();
-                    //user.IsVerified = true;
-                    //usersEntities.Users.Add(user);
-                    //usersEntities.Numbers.Add(number);
-                    //usersEntities.SaveChanges();
                     ViewBag.Message = "Activation successful.";
                 }
 
